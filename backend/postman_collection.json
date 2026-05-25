@@ -1,0 +1,44 @@
+{
+  "info": { "name": "Mini CRM", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "token", "value": "" },
+    { "key": "leadId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth — Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/auth/login",
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@crm.io\",\n  \"password\": \"admin123\"\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "exec": ["const j = pm.response.json(); if (j.token) pm.collectionVariables.set('token', j.token);"] } }]
+    },
+    { "name": "Auth — Me", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/auth/me" } },
+    { "name": "Leads — List", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/leads?q=&status=" } },
+    { "name": "Leads — Stats", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/leads/stats/summary" } },
+    {
+      "name": "Leads — Create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/leads",
+        "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"jane@example.com\",\n  \"phone\": \"+1 555 0100\",\n  \"company\": \"Example Inc\",\n  \"status\": \"New\",\n  \"source\": \"Website\",\n  \"priority\": \"High\",\n  \"dealValue\": 1200\n}" }
+      },
+      "event": [{ "listen": "test", "script": { "exec": ["const j = pm.response.json(); if (j.lead && j.lead._id) pm.collectionVariables.set('leadId', j.lead._id);"] } }]
+    },
+    { "name": "Leads — Get One", "request": { "method": "GET", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/leads/{{leadId}}" } },
+    {
+      "name": "Leads — Update",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/leads/{{leadId}}",
+        "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"jane@example.com\",\n  \"status\": \"Contacted\"\n}" }
+      }
+    },
+    { "name": "Leads — Delete", "request": { "method": "DELETE", "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }], "url": "{{baseUrl}}/leads/{{leadId}}" } }
+  ]
+}

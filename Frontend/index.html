@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini CRM — Login</title>
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="css/auth.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="logo-dot"></div>
+      <h1>Mini CRM</h1>
+    </div>
+    <p class="auth-sub">Sign in to your workspace</p>
+    <form id="loginForm" class="auth-form" novalidate>
+      <label>Email
+        <input type="email" id="email" placeholder="admin@crm.io" required />
+      </label>
+      <label>Password
+        <input type="password" id="password" placeholder="••••••••" required />
+      </label>
+      <div class="auth-row">
+        <label class="check"><input type="checkbox" id="remember" /> Remember me</label>
+        <a href="#" class="muted">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      <p id="loginError" class="error-msg"></p>
+    </form>
+    <p class="auth-foot">Demo: <code>admin@crm.io</code> / <code>admin123</code></p>
+  </div>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

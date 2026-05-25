@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini CRM — Dashboard</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-dot"></div><span>Mini CRM</span>
+    </div>
+    <nav class="side-nav">
+      <a href="dashboard.html" class="active"><span class="ic">▦</span> Dashboard</a>
+      <a href="leads.html"><span class="ic">☷</span> Leads</a>
+      <a href="#"><span class="ic">⌬</span> Contacts</a>
+      <a href="#"><span class="ic">⎙</span> Deals</a>
+      <a href="#"><span class="ic">⚙</span> Settings</a>
+    </nav>
+    <div class="side-foot">
+      <button id="logoutBtn" class="btn btn-ghost btn-block">Sign out</button>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      <h2>Dashboard</h2>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">◐</button>
+        <div class="avatar">A</div>
+      </div>
+    </header>
+
+    <section class="cards-grid">
+      <div class="stat-card">
+        <span class="stat-label">Total Leads</span>
+        <span class="stat-value" id="statTotal">0</span>
+        <span class="stat-trend up">▲ 12.4%</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">New This Week</span>
+        <span class="stat-value" id="statNew">0</span>
+        <span class="stat-trend up">▲ 4.1%</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Qualified</span>
+        <span class="stat-value" id="statQualified">0</span>
+        <span class="stat-trend down">▼ 1.2%</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Pipeline Value</span>
+        <span class="stat-value" id="statValue">$0</span>
+        <span class="stat-trend up">▲ 8.7%</span>
+      </div>
+    </section>
+
+    <section class="charts-grid">
+      <div class="panel">
+        <div class="panel-head"><h3>Leads by Status</h3></div>
+        <canvas id="statusChart" height="220"></canvas>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Leads by Source</h3></div>
+        <canvas id="sourceChart" height="220"></canvas>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h3>Recent Leads</h3>
+        <a href="leads.html" class="link">View all →</a>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Company</th><th>Status</th><th>Source</th><th>Follow-up</th></tr></thead>
+          <tbody id="recentLeads"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="../js/config.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/charts.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

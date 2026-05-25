@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini CRM — Leads</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="../css/dashboard.css" />
+<link rel="stylesheet" href="../css/leads.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><div class="logo-dot"></div><span>Mini CRM</span></div>
+    <nav class="side-nav">
+      <a href="dashboard.html"><span class="ic">▦</span> Dashboard</a>
+      <a href="leads.html" class="active"><span class="ic">☷</span> Leads</a>
+      <a href="#"><span class="ic">⌬</span> Contacts</a>
+      <a href="#"><span class="ic">⎙</span> Deals</a>
+      <a href="#"><span class="ic">⚙</span> Settings</a>
+    </nav>
+    <div class="side-foot">
+      <button id="logoutBtn" class="btn btn-ghost btn-block">Sign out</button>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-toggle" id="menuToggle">☰</button>
+      <h2>Leads</h2>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle">◐</button>
+        <div class="avatar">A</div>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <div class="search">
+        <input type="search" id="searchInput" placeholder="Search by name, email, or company…" />
+      </div>
+      <div class="filters">
+        <select id="statusFilter">
+          <option value="">All statuses</option>
+          <option>New</option><option>Contacted</option><option>Qualified</option>
+          <option>Proposal</option><option>Won</option><option>Lost</option>
+        </select>
+        <button class="btn btn-primary" id="addLeadBtn">+ Add Lead</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th><th>Email</th><th>Source</th><th>Status</th>
+              <th>Company</th><th>Phone</th><th>Follow-up</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="leadsBody"></tbody>
+        </table>
+      </div>
+      <div class="table-empty" id="emptyState" hidden>No leads match your search.</div>
+    </section>
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="leadModal" hidden>
+  <div class="modal">
+    <header class="modal-head">
+      <h3 id="modalTitle">Add Lead</h3>
+      <button class="icon-btn" id="closeModal">✕</button>
+    </header>
+    <form id="leadForm" class="modal-body">
+      <input type="hidden" id="leadId" />
+      <div class="grid-2">
+        <label>First Name<input id="firstName" required /></label>
+        <label>Last Name<input id="lastName" required /></label>
+        <label>Email<input type="email" id="leadEmail" required /></label>
+        <label>Phone<input id="phone" /></label>
+        <label>Company<input id="company" /></label>
+        <label>Job Title<input id="jobTitle" /></label>
+        <label>Source
+          <select id="source">
+            <option>Website</option><option>Referral</option><option>LinkedIn</option>
+            <option>Email</option><option>Cold Call</option><option>Event</option><option>Other</option>
+          </select>
+        </label>
+        <label>Status
+          <select id="status">
+            <option>New</option><option>Contacted</option><option>Qualified</option>
+            <option>Proposal</option><option>Won</option><option>Lost</option>
+          </select>
+        </label>
+        <label>Industry<input id="industry" /></label>
+        <label>Priority
+          <select id="priority"><option>Low</option><option>Medium</option><option>High</option></select>
+        </label>
+        <label>Deal Value<input type="number" id="dealValue" min="0" /></label>
+        <label>Location<input id="location" /></label>
+        <label>Preferred Channel
+          <select id="preferredChannel"><option>Email</option><option>Phone</option><option>WhatsApp</option><option>LinkedIn</option></select>
+        </label>
+        <label>Follow-up Date<input type="date" id="followUpDate" /></label>
+        <label>Last Contacted<input type="date" id="lastContacted" /></label>
+        <label>Tags (comma-separated)<input id="tags" placeholder="hot, enterprise" /></label>
+      </div>
+      <label>Notes<textarea id="notes" rows="3"></textarea></label>
+      <footer class="modal-foot">
+        <button type="button" class="btn btn-ghost" id="cancelModal">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="saveLead">Save Lead</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/leads.js"></script>
+</body>
+</html>
